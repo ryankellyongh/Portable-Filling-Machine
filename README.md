@@ -2,6 +2,7 @@
 This project focuses on designing a **Portable Manual Liquid Filling Machine** for laboratory, field, and small-batch industrial use. The device addresses the limitations of existing filling methods, which are often slow, inconsistent, and prone to spills when using funnels, syringes, or pipettes. Unlike large-scale filling machines that are costly and non-portable, this design prioritizes **efficiency, precision, affordability, and mobility.**
 
 How It Works
+
 Fill: Remove the top fill cap, pour liquid into the chamber, and replace the cap.
 
 
