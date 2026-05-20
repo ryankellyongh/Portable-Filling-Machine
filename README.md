@@ -32,7 +32,7 @@ small-batch industrial applications.
 
 | Exterior View | Top View | Internal Components |
 |---|---|---|
-| ![](images/assembly_isometric.png) | ![](images/assembly_top.png) | ![](images/assembly_transparent.png) |
+| ![](images/assembly_isometric.png) | ![](images/assembly_bottom.png) | ![](images/assembly_transparent.png) |
 
 ---
 
