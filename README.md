@@ -1,66 +1,83 @@
-# Portable-Filling-Machine
-This project focuses on designing a **Portable Manual Liquid Filling Machine** for laboratory, field, and small-batch industrial use. The device addresses the limitations of existing filling methods, which are often slow, inconsistent, and prone to spills when using funnels, syringes, or pipettes. Unlike large-scale filling machines that are costly and non-portable, this design prioritizes **efficiency, precision, affordability, and mobility.**
+# Portable Manual Liquid Filling Machine
 
-How It Works
+> A compact, affordable, and precise liquid filling solution for lab, field, and small-batch industrial use.
 
-Fill: Remove the top fill cap, pour liquid into the chamber, and replace the cap.
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen) ![Cost](https://img.shields.io/badge/Target%20Cost-Under%20%24100-blue) ![Volume](https://img.shields.io/badge/Volume-10–100%20mL-orange)
 
+---
 
-Position: Place the container under the nozzle, using the side handle for stability.
+## Overview
 
+Existing filling methods — funnels, syringes, pipettes — are slow, inconsistent, and prone to spills. Large-scale filling machines solve this, but are costly and non-portable. This device fills that gap by combining **efficiency, precision, affordability, and mobility** in a single handheld tool.
 
-Dispense: Push the plunger to release liquid through the nozzle.
+---
 
+## How It Works
 
-Clean: Disassemble parts, rinse, and dry after use.
+```
+1. Fill     →  Remove top fill cap, pour liquid into chamber, replace cap
+2. Position →  Place container under nozzle; use side handle for stability
+3. Dispense →  Push plunger to release liquid through nozzle
+4. Clean    →  Disassemble, rinse, and dry all parts after use
+```
 
+---
 
+## Design Features
 
-Design Features & Goals
-Quick Operation: One-handed plunger action; accurate filling for 10 mL to 100 mL.
+| Feature | Details |
+|---------|---------|
+| Quick Operation | One-handed plunger action · accurate from 10 mL to 100 mL |
+| Interchangeable Nozzles | Snap-on options for test tubes, bottles, or vials |
+| Easy Cleaning | All fluid-contact parts snap apart for maintenance |
+| Cost Efficiency | Target price under **$100/unit** using common, durable materials |
 
+---
 
-Interchangeable Nozzles: Snap-on options for test tubes, bottles, or vials.
+## Materials
 
+| Component | Material |
+|-----------|---------|
+| Housing & Reservoir | Polycarbonate |
+| Frame & Lever | ABS |
+| Nozzles | Polypropylene or 316L Stainless Steel |
+| Seals & Tubing | Silicone |
 
-Easy Cleaning: All fluid-contact parts snap apart for maintenance.
+---
 
+## Target Users
 
-Cost Efficiency: Target price under $100/unit using common, durable materials.
+- **Academic Researchers & Lab Technicians** — precise, small-volume liquid handling in space-limited environments
+- **Field Scientists & Environmental Technicians** — portable design suited for mobile sampling in rugged conditions
+- **Small-Batch Manufacturers** — affordable filling solution for food, cosmetics, and beverage QA or boutique production
+- **Healthcare & Veterinary Professionals** — dosing and sample preparation for clinics or on-site visits
 
+---
 
-Material Summary:
-Housing & Reservoir: Polycarbonate
+## Safety & Maintenance
 
+**Before use:**
+- Inspect all seals for wear or damage
+- Do not exceed maximum fill capacity
+- Stop immediately if any part appears damaged or misaligned
 
-Frame & Lever: ABS
+**After use:**
+- Clean all fluid-contact parts thoroughly
+- Check alignment of guide rods
+- Replace worn seals and fasteners as needed
 
+---
 
-Nozzles: Polypropylene or 316L Stainless Steel
+## Why This Device?
 
+Existing machines are large, expensive, and designed for industrial-scale operations — making them impractical for researchers, field workers, and small producers. This device combines **portability and precision**, offering a hygienic, flexible, and affordable alternative for anyone who needs reliable liquid filling on a small scale.
 
-Seals/Tubing: Silicone
+---
 
+## 👤 Author
 
+**Ryan Kelly**
 
-Target Users
-Academic Researchers & Lab Technicians: For precise, small-volume liquid handling in space-limited environments.
+Built as part of the **[Build Fellowship](https://www.buildfellowship.com)**
 
-
-Field Scientists & Environmental Technicians: Portable design suited for mobile sampling in rugged conditions.
-
-
-Small-Batch Manufacturers (Food, Cosmetics, Beverage): Affordable filling solution for QA sampling or boutique production.
-
-
-Healthcare & Veterinary Professionals: Assists in dosing and sample preparation for clinics or on-site visits.
-
-
-Why This Device?
-Existing machines are large and costly, making them impractical for small-scale operations. This device combines portability and precision, filling a crucial gap for users who need an affordable, flexible, and hygienic solution.
-
-Safety & Maintenance
-Safety: Inspect seals before use; do not exceed fill limits; stop if any part is damaged.
-
-
-Maintenance: Regular cleaning; check alignment of guide rods; replace worn seals and fasteners as needed.
+[![GitHub](https://img.shields.io/badge/GitHub-ryankellyongh-black?logo=github)](https://github.com/ryankellyongh)
