@@ -41,12 +41,12 @@ small-batch industrial applications.
 
 ## Materials
 
-| Component | Material |
-|-----------|---------|
-| Housing & Reservoir | Polycarbonate |
-| Frame & Lever | ABS |
-| Nozzles | Polypropylene or 316L Stainless Steel |
-| Seals & Tubing | Silicone |
+| Component | Material | Rationale |
+|-----------|---------|-----------|
+| Housing & Reservoir | Polycarbonate | Impact resistant, transparent for liquid level visibility, and chemically compatible with most lab liquids |
+| Frame & Lever | ABS | Lightweight, rigid, and cost-effective for structural parts that don't contact liquid |
+| Nozzles | Polypropylene or 316L Stainless Steel | Chemically inert and autoclavable; stainless steel preferred for harsh chemicals or repeated sterilization |
+| Seals & Tubing | Silicone | Flexible, non-toxic, and temperature resistant — standard for lab-grade seals and tubing |
 
 ---
 
