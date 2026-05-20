@@ -26,9 +26,9 @@ nozzle_neck_height = 5.0
 snap_groove_count = 2
 snap_groove_width = 1.0
 snap_groove_spacing = 3.0
-side_handle_length = 40.0
-side_handle_width = 10.0
-side_handle_thickness = 5.0
+side_handle_length = 60.0
+side_handle_width = 14.0
+side_handle_thickness = 12.0
 
 # --- Positions ---
 cyl_x = housing_size / 2
@@ -157,26 +157,35 @@ snap_nozzle_obj = add_part(snap_nozzle, "SnapNozzle")
 HANDLE_MODE = 1
 
 def make_side_handle(side: str):
-    """
-    side: 'right' or 'left'
-    Returns (obj, name) or (None, None) if invalid
-    """
     if side == 'right':
-        hx = housing_size - side_handle_thickness   # flush on right face
+        hx = housing_size + 5
     elif side == 'left':
-        hx = -side_handle_thickness                 # flush on left face
+        hx = -10
     else:
         return None, None
 
     hy = (housing_size - side_handle_width) / 2
     hz = (cylinder_height + 24 - side_handle_length) / 2
 
-    hshape = Part.makeBox(
-        side_handle_thickness,           # X thickness
-        side_handle_width,               # Y width
-        side_handle_length,              # Z length
-        Base.Vector(hx, hy, hz)
-    )
+    # Top connecting bar
+    top_bar = Part.makeBox(5, side_handle_width, 4,
+                           Base.Vector(housing_size, hy, hz + side_handle_length - 4))
+
+    # Bottom connecting bar
+    bottom_bar = Part.makeBox(5, side_handle_width, 4,
+                              Base.Vector(housing_size, hy, hz))
+
+    # Slim vertical grip
+    grip_bar = Part.makeBox(6, side_handle_width, side_handle_length,
+                            Base.Vector(hx, hy, hz))
+
+    hshape = grip_bar.fuse(top_bar).fuse(bottom_bar)
+
+    try:
+        hshape = hshape.makeFillet(2.0, hshape.Edges)
+    except Exception as e:
+        print(f"Fillet error: {e}")
+
     name = f"SideHandle_{side.capitalize()}"
     return add_part(hshape, name), name
 
@@ -202,7 +211,6 @@ valve_obj = add_part(valve, "OutletValve")
 tube_diameter = 4.0
 tube_height = cyl_z + 5
 tube = Part.makeCylinder(tube_diameter / 2, tube_height, Base.Vector(cyl_x, cyl_y, nozzle_z))
-# Apply fillet to tube top and bottom edges
 try:
     tube = tube.makeFillet(0.5, tube.Edges)
 except Exception as e:
@@ -219,19 +227,6 @@ inner_core = Part.makeCylinder(gasket_inner, gasket_thickness, Base.Vector(cyl_x
 gasket = outer_ring.cut(inner_core)
 gasket_obj = add_part(gasket, "NeckGasket")
 
-# --- Base Feet ---
-foot_radius = 3.0
-foot_height = 2.5
-foot_positions = [
-    Base.Vector(3, 3, 0),
-    Base.Vector(housing_size - 3 - foot_radius*2, 3, 0),
-    Base.Vector(3, housing_size - 3 - foot_radius*2, 0),
-    Base.Vector(housing_size - 3 - foot_radius*2, housing_size - 3 - foot_radius*2, 0)
-]
-for i, pos in enumerate(foot_positions):
-    foot = Part.makeCylinder(foot_radius, foot_height, pos)
-    add_part(foot, f"BaseFoot_{i+1}")
-
 # --- Guide Rods ---
 plunger_top = plunger_z + plunger_length
 guide_rod_radius = 1.5
@@ -241,7 +236,7 @@ guide_rod_height = plunger_top - guide_rod_z - guide_rod_top_clearance
 guide_rod_distance = (housing_size / 2) - 2.0
 rod_angles = [pi/4, 3*pi/4, 5*pi/4, 7*pi/4]
 main_cylinder_radius = cylinder_diameter / 2
-guide_rod_clearance = 2.0  # move rods clearly outside the main cylinder
+guide_rod_clearance = 2.0
 guide_rod_distance = main_cylinder_radius + guide_rod_clearance
 for i, angle in enumerate(rod_angles):
     x = cyl_x + guide_rod_distance * cos(angle)
@@ -249,30 +244,43 @@ for i, angle in enumerate(rod_angles):
     rod = Part.makeCylinder(guide_rod_radius, guide_rod_height, Base.Vector(x, y, guide_rod_z))
     add_part(rod, f"GuideRod_{i+1}")
 
+# --- Base Feet ---
+foot_radius = 3.0
+foot_height = 2.5
+foot_distance = main_cylinder_radius + guide_rod_clearance
+foot_positions = []
+for angle in rod_angles:
+    x = cyl_x + foot_distance * cos(angle)
+    y = cyl_y + foot_distance * sin(angle)
+    foot_positions.append(Base.Vector(x, y, 0))
+for i, pos in enumerate(foot_positions):
+    foot = Part.makeCylinder(foot_radius, foot_height, pos)
+    add_part(foot, f"BaseFoot_{i+1}")
+
 doc.recompute()
 
 # --- Colors ---
 colors = {
-    "Housing": (0.5, 0.0, 0.5),
-    "MainCylinder": (0.95, 0.95, 0.95),
-    "Neck": (0.6, 0.6, 0.6),
-    "FillCap": (0.2, 0.2, 0.2),
-    "Plunger": (1.0, 0.3, 0.3),
-    "PlungerO_Ring": (0.1, 0.1, 0.1),
-    "Nozzle": (0.3, 0.5, 1.0),
-    "SnapNozzle": (0.2, 0.4, 0.9),
-    # removed static "SideHandle" color; we color created handles below
-    "OutletValve": (0.0, 0.8, 0.2),
-    "InternalTube": (0.2, 0.8, 0.9),
-    "NeckGasket": (0.5, 1.0, 0.5),
-    "BaseFoot_1": (0.2, 0.2, 0.2),
-    "BaseFoot_2": (0.2, 0.2, 0.2),
-    "BaseFoot_3": (0.2, 0.2, 0.2),
-    "BaseFoot_4": (0.2, 0.2, 0.2),
-    "GuideRod_1": (0.6, 0.6, 0.6),
-    "GuideRod_2": (0.6, 0.6, 0.6),
-    "FillLimitRing": (1.0, 1.0, 0.0),
-    "FillWindow": (0.8, 1.0, 1.0)
+    "Housing": (0.85, 0.85, 0.85),        # Light grey
+    "MainCylinder": (0.95, 0.95, 0.95),   # Near white
+    "Neck": (0.75, 0.75, 0.75),           # Mid grey
+    "FillCap": (0.3, 0.3, 0.3),           # Dark grey
+    "Plunger": (0.75, 0.75, 0.75),        # Grey
+    "PlungerO_Ring": (0.15, 0.15, 0.15),  # Near black
+    "Nozzle": (0.75, 0.75, 0.75),         # Grey
+    "SnapNozzle": (0.75, 0.75, 0.75),     # Grey
+    "OutletValve": (0.75, 0.75, 0.75),    # Grey
+    "InternalTube": (0.75, 0.75, 0.75),   # Grey
+    "NeckGasket": (0.2, 0.2, 0.2),        # Dark grey
+    "BaseFoot_1": (0.3, 0.3, 0.3),        # Dark grey
+    "BaseFoot_2": (0.3, 0.3, 0.3),
+    "BaseFoot_3": (0.3, 0.3, 0.3),
+    "BaseFoot_4": (0.3, 0.3, 0.3),
+    "GuideRod_1": (0.7, 0.7, 0.7),        # Silver grey
+    "GuideRod_2": (0.7, 0.7, 0.7),
+    "FillLimitRing": (0.7, 0.7, 0.7),     # Grey
+    "FillWindow": (0.85, 0.95, 1.0),      # Subtle light blue tint
+    "SideHandle_Right": (0.3, 0.3, 0.3)   # Dark grey
 }
 
 for name, rgb in colors.items():
@@ -281,14 +289,12 @@ for name, rgb in colors.items():
     except Exception as e:
         print(f"Error coloring {name}: {e}")
 
-# Color any created handles
 for nm in globals().get("created_handle_names", []):
     try:
-        doc.getObject(nm).ViewObject.ShapeColor = (0.1, 0.1, 0.1)
+        doc.getObject(nm).ViewObject.ShapeColor = (0.3, 0.3, 0.3)
     except Exception as e:
         print(f"Error coloring {nm}: {e}")
 
-# Optional: make the fill window actually transparent in the viewer
 try:
     doc.getObject("FillWindow").ViewObject.Transparency = 80
 except Exception:
