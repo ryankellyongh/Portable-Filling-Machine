@@ -83,11 +83,11 @@ small-batch industrial applications.
 
 ## Why This Device?
 
-Existing machines are large, expensive, and designed for industrial-scale operations — making them impractical for researchers, field workers, and small producers. This device combines **portability and precision**, offering a hygienic, flexible, and affordable alternative for anyone who needs reliable liquid filling on a small scale.
+Existing machines are large, expensive, and designed for industrial-scale operations, making them impractical for researchers, field workers, and small producers. This device combines **portability and precision**, offering a hygienic, flexible, and affordable alternative for anyone who needs reliable liquid filling on a small scale.
 
 ---
 
-## 👤 Author
+## Author
 
 **Ryan Kelly**
 
