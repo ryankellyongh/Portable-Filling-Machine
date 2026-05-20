@@ -31,7 +31,7 @@ small-batch industrial applications.
 ## CAD Model
 
 | Exterior View | Internal Components |
-|---|---|---|
+|---|---|
 | ![](images/assembly_isometric.png) | ![](images/assembly_transparent.png) |
 
 ---
