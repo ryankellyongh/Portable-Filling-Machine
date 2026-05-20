@@ -8,7 +8,12 @@
 
 ## Overview
 
-Existing filling methods — funnels, syringes, pipettes — are slow, inconsistent, and prone to spills. Large-scale filling machines solve this, but are costly and non-portable. This device fills that gap by combining **efficiency, precision, affordability, and mobility** in a single handheld tool.
+Current liquid filling methods such as funnels, syringes, and pipettes are often slow, 
+inconsistent, and prone to spills. While large-scale filling machines address these 
+shortcomings, they are expensive and impractical for portable use. The Portable Manual 
+Liquid Filling Machine bridges this gap, combining **efficiency, precision, affordability, 
+and mobility** into a single compact, handheld device suited for laboratory, field, and 
+small-batch industrial applications.
 
 ---
 
